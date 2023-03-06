@@ -1,0 +1,53 @@
+.form {
+    @apply max-w-[520px] m-auto py-[20px] px-[35px] flex flex-col gap-[20px] relative; 
+    .label {
+        @apply text-[7px] flex flex-col;
+    }
+    .addInput, .select, .textarea {
+        @apply border-solid border-gray-400 border-[1px] rounded-[8px] px-[12px] py-[7px] text-[14px];
+    }
+    .textarea {
+        @apply min-h-[190px]
+    }
+    .statusBox {
+        display: none;
+    }
+    .statusBlock {
+        @apply flex items-center gap-[12px]
+    }
+    span {
+        width: 20px;
+        height: 20px;
+        border: 1px solid #333;
+    }
+    .statusBox:checked + span {
+        background-image: url('../public//check.svg');
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+    .button {
+        @apply cursor-pointer border-solid border-[1px] bg-green-200 border-green-400 w-[220px] max-h-[40px];
+        &:hover {
+            @apply bg-green-300
+        }
+        &:active {
+            @apply scale-90
+        }
+        @media (max-width) {
+            
+        }
+    }
+    .reset {
+        @apply cursor-pointer border-solid border-[1px] bg-transparent border-black w-[220px] max-h-[40px];
+        &:hover {
+            @apply bg-red-300
+        }
+        &:active {
+            @apply scale-90
+        }
+        @media (max-width) {
+            
+        }
+    }
+
+}

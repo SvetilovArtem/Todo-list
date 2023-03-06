@@ -1,0 +1,25 @@
+.categories {
+    @apply flex justify-center items-center gap-[45px] cursor-pointer py-[25px];
+    .category {
+      @apply relative uppercase; 
+    }
+    .category:after {
+        @apply bg-red-400;
+        display: block;
+        position: absolute;
+        left: 0;
+        width: 0;
+        height: 2px;
+        content: "";
+        transition: width 0.3s ease-out;
+    }
+    .category:hover:after {
+        width: 100%;
+    }
+    .category:hover:after {
+        width: 100%;
+    }
+    .category.active:after {
+        width: 100%;
+    }
+}

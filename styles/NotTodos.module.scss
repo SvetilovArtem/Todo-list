@@ -1,0 +1,7 @@
+.wrapper {
+    @apply flex flex-col items-center relative;
+
+    .title {
+        @apply text-[34px] absolute bottom-0 uppercase;
+    }
+}

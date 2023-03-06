@@ -1,0 +1,37 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 85px;
+    background-color: rgba(233, 77, 77, 0.8);
+    color: #fff;
+    .logo {
+        font-weight: 700;
+        font-size: 38px;
+    }
+    a {
+        color: #fff;
+    }
+    .nav {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        font-size: 22px;
+
+        .active {
+            color: #444;
+        }
+        div:hover {
+            color: #444
+        }
+        .user {
+            @apply text-[10px] flex items-center; 
+            img {
+                @apply rounded-[50%] mr-[8px];
+            }
+            .userInfo {
+
+            }
+        }
+    }
+}

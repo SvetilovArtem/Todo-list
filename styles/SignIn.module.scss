@@ -1,0 +1,9 @@
+.signIn {
+    @apply flex justify-center flex-col items-center pt-[50px] cursor-pointer;
+    h3 {
+        @apply mb-[18px] text-[36px] font-bold;
+    }
+    a {
+        @apply decoration-solid text-blue-500 mb-[10px]; 
+    }
+}
