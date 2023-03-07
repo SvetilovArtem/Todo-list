@@ -9,25 +9,25 @@ import { addTaskToFirebase } from "@/firebase/firebase";
 const AddForm = () => {
   const isAuth = useSelector((state: RootState) => state.todoReducer.isAuth);
   const [isImportant, setIsImportant] = useState(false);
-  const [showMessage, setShowMessage] = useState(false)
+  const [showMessage, setShowMessage] = useState(false);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset
+    reset,
   } = useForm<IShippingFields>({
     mode: "onChange",
   });
   const onSubmit = (data: IShippingFields) => {
-    if(data) addTaskToFirebase(data).then(e => setShowMessage(true))
-    setTimeout(() => setShowMessage(false), 2000)
+    if (data) addTaskToFirebase(data).then((e) => setShowMessage(true));
+    setTimeout(() => setShowMessage(false), 2000);
   };
   return (
     <>
       {isAuth ? (
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-            <label htmlFor="" className={styles.label}>
+          <label htmlFor="" className={styles.label}>
             todo title
             <input
               type="text"
@@ -42,7 +42,11 @@ const AddForm = () => {
           </label>
           <label htmlFor="" className={styles.label}>
             category
-            <select id="" className={styles.select} {...register("category")}>
+            <select
+              id=""
+              className={styles.select}
+              {...register("category", { required: "Category is required!" })}
+            >
               <option value="" disabled selected>
                 choose category...
               </option>
@@ -50,6 +54,11 @@ const AddForm = () => {
               <option value="education">education</option>
               <option value="family">family</option>
             </select>
+            {errors.category && (
+              <div style={{ color: "red", fontSize: "10px" }}>
+                {errors.category.message}
+              </div>
+            )}
           </label>
           <label htmlFor="" className={styles.label}>
             deadline
@@ -62,7 +71,11 @@ const AddForm = () => {
           </label>
           <label htmlFor="" className={styles.label}>
             description
-            <textarea id="" className={styles.textarea} {...register("desc")}></textarea>
+            <textarea
+              id=""
+              className={styles.textarea}
+              {...register("desc")}
+            ></textarea>
           </label>
           <label className={styles.statusBlock}>
             <div className={styles.label + " " + "cursor-pointer max-w-[27px]"}>
@@ -80,15 +93,20 @@ const AddForm = () => {
               <div className="text-green-300">no important</div>
             )}
           </label>
-         
+
           <button type="submit" className={styles.button}>
             add
           </button>
-          <button type="button" className={styles.reset} onClick={() => reset()}>
+          <button
+            type="button"
+            className={styles.reset}
+            onClick={() => reset()}
+          >
             reset
           </button>
-          {showMessage && <div className="text-green-400">Note has been added</div>}
-
+          {showMessage && (
+            <div className="text-green-400">Note has been added</div>
+          )}
         </form>
       ) : (
         <div>Доступно только авторизованным пользователям</div>

@@ -1,7 +1,17 @@
+import { Todo } from "@/types/TodoType";
 import Link from "next/link";
 import React from "react";
 
-const Todo = ({ todo, todosCompleted, updateTaskCompletedHandler, deleteTaskHandler }) => {
+import styles from '../styles/Todo.module.scss'
+
+interface ITodoItemProps {
+  todo: Todo,
+  todosCompleted: string[],
+  updateTaskCompletedHandler: (id:string, completed:boolean) => void,
+  deleteTaskHandler: (id: string) => void,
+}
+
+const TodoItem = ({ todo, todosCompleted, updateTaskCompletedHandler, deleteTaskHandler }:ITodoItemProps) => {
   return (
     <div
       className={
@@ -36,4 +46,4 @@ const Todo = ({ todo, todosCompleted, updateTaskCompletedHandler, deleteTaskHand
   );
 };
 
-export default Todo;
+export default TodoItem;

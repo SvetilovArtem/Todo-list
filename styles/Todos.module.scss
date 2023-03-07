@@ -3,19 +3,5 @@
     flex-direction: column;
     padding: 30px 80px;
     row-gap: 30px;
-    .todo {
-        @apply flex items-center gap-[50px];
-    }
-    .doneBtn {
-        @apply border-solid rounded-tl-[3px] rounded-bl-[3px] px-[7px] py-[4px] bg-green-400 text-white transition-all duration-200;
-        &:hover {
-            @apply outline outline-4 outline-green-500/30;
-        }
-    }
-    .deleteBtn {
-        @apply border-solid rounded-tr-[3px] rounded-br-[3px] px-[7px] py-[4px] bg-red-400 text-white transition-all duration-200;
-        &:hover {
-            @apply outline outline-4 outline-red-500/30;
-        }
-    }
+    
 }

@@ -1,9 +1,9 @@
+import TodoItem from "@/components/TodoItem";
 import TodosAfterFilterNotForAll from "@/components/TodosAfterFilterNotForAll";
 import { deleteTask, getTasksFromFirebase, updateTaskCompleted } from "@/firebase/firebase";
 import { AppDispatch, RootState } from "@/redux/store";
 import { deleteTodosCompleted, setTodos, setTodosCompleted, setTodosFromFirebase, setTodosIdList } from "@/redux/todoSlice";
 import { Todo } from "@/types/TodoType";
-import Link from "next/link";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -68,21 +68,7 @@ const Todos = () => {
               deleteTaskHandler={deleteTaskHandler} 
             />
           : todosFromFirebase.length !== 0 ? todosFromFirebase.map((todo) => (
-            <div className={todosCompleted.includes(todo.id) ? styles.todo + ' ' + 'line-through' : styles.todo}>
-              <Link href={`/todos/${todo.id}`} key={todo.id}>
-                {todo.title}
-                <span className="text-red-600 text-[8px]">
-                  {" "}
-                  (deadline: {todo.deadline})
-                </span>
-              </Link>
-              <div className={styles.buttonGroup}>
-                  <button type="button" className={styles.doneBtn} onClick={() => updateTaskCompletedHandler(todo.id, todo.completed)}>done</button>
-                  <button type="button" className={styles.deleteBtn} onClick={() => deleteTaskHandler(todo.id)}>
-                    delete
-                  </button>
-                </div>
-            </div>
+            <TodoItem todo={todo} todosCompleted={todosCompleted} updateTaskCompletedHandler={updateTaskCompletedHandler} deleteTaskHandler={deleteTaskHandler} />
           )) : <div>Not todos</div>}
       </div>
     </>

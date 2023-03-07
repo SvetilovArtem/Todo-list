@@ -4,6 +4,7 @@ import React from "react";
 
 import styles from "../styles/Todos.module.scss";
 import NotTodos from "./NotTodos";
+import TodoItem from "./TodoItem";
 
 interface ITodosAfterFilterNotForAllProps {
     todosAfterFilterNotForAll: Todo[],
@@ -23,49 +24,17 @@ const TodosAfterFilterNotForAll = ({
   deleteTaskHandler,
 }:ITodosAfterFilterNotForAllProps) => {
   return (
-    <div>
+    <>
       {todosAfterFilterNotForAll.length !== 0 ? (
         todosFromFirebase
           .filter((todo) => isActiveCategory === todo.category)
           .map((todo) => (
-            <div
-              className={
-                todosCompleted.includes(todo.id)
-                  ? styles.todo + " " + "line-through"
-                  : styles.todo
-              }
-              onMouseEnter={() => {}}
-            >
-              <Link href={`/todos/${todo.id}`} key={todo.id}>
-                {todo.title}
-                <span className="text-red-600 text-[8px]">
-                  (deadline: {todo.deadline})
-                </span>
-              </Link>
-              <div className={styles.buttonGroup}>
-                <button
-                  type="button"
-                  className={styles.doneBtn}
-                  onClick={() =>
-                    updateTaskCompletedHandler(todo.id, todo.completed)
-                  }
-                >
-                  done
-                </button>
-                <button
-                  type="button"
-                  className={styles.deleteBtn}
-                  onClick={() => deleteTaskHandler(todo.id)}
-                >
-                  delete
-                </button>
-              </div>
-            </div>
+            <TodoItem todo={todo} todosCompleted={todosCompleted} updateTaskCompletedHandler={updateTaskCompletedHandler} deleteTaskHandler={deleteTaskHandler} />
           ))
       ) : (
         <NotTodos />
       )}
-    </div>
+    </>
   );
 };
 

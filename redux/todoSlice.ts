@@ -17,7 +17,7 @@ export interface TodoState {
 }
 
 const initialState: TodoState = {
-  isAuth: true,
+  isAuth: false,
   authUser: {
     authUserName: '',
     authUserEmail: '',
