@@ -93,17 +93,19 @@ const AddForm = () => {
               <div className="text-green-300">no important</div>
             )}
           </label>
-
-          <button type="submit" className={styles.button}>
-            add
-          </button>
-          <button
-            type="button"
-            className={styles.reset}
-            onClick={() => reset()}
-          >
-            reset
-          </button>
+          <div className={styles.buttonGroup}>
+            <button type="submit" className={styles.addButton}>
+              add
+            </button>
+            <button
+              type="button"
+              className={styles.resetButton}
+              onClick={() => reset()}
+            >
+              reset
+            </button>
+          </div>
+          
           {showMessage && (
             <div className="text-green-400">Note has been added</div>
           )}

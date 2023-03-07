@@ -25,29 +25,32 @@
         background-repeat: no-repeat;
         background-position: center center;
     }
-    .button {
-        @apply cursor-pointer border-solid border-[1px] bg-green-200 border-green-400 w-[220px] max-h-[40px];
-        &:hover {
-            @apply bg-green-300
+    .buttonGroup {
+        .addButton {
+            @apply text-white cursor-pointer rounded-tl-[8px] rounded-bl-[8px] bg-green-400 w-[50%] h-[40px];
+            &:hover {
+                @apply bg-green-500
+            }
+            &:active {
+                @apply scale-90
+            }
+            @media (max-width) {
+                
+            }
         }
-        &:active {
-            @apply scale-90
-        }
-        @media (max-width) {
-            
+        .resetButton {
+            @apply text-white cursor-pointer rounded-tr-[8px] rounded-br-[8px] bg-red-400 border-[1px] border-solid border-gray-300 w-[50%] h-[40px];
+            &:hover {
+                @apply bg-red-500
+            }
+            &:active {
+                @apply scale-90
+            }
+            @media (max-width) {
+                
+            }
         }
     }
-    .reset {
-        @apply cursor-pointer border-solid border-[1px] bg-transparent border-black w-[220px] max-h-[40px];
-        &:hover {
-            @apply bg-red-300
-        }
-        &:active {
-            @apply scale-90
-        }
-        @media (max-width) {
-            
-        }
-    }
+
 
 }

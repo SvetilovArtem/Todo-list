@@ -1,18 +1,17 @@
 import { Todo } from "@/types/TodoType";
-import Link from "next/link";
 import React from "react";
-
-import styles from "../styles/Todos.module.scss";
 import NotTodos from "./NotTodos";
 import TodoItem from "./TodoItem";
 
+import styles from "../styles/Todos.module.scss";
+
 interface ITodosAfterFilterNotForAllProps {
-    todosAfterFilterNotForAll: Todo[],
-    todosFromFirebase: Todo[],
-    isActiveCategory: string,
-    todosCompleted: string[],
-    updateTaskCompletedHandler: (id:string, completed:boolean) => void,
-    deleteTaskHandler: (id: string) => void,
+  todosAfterFilterNotForAll: Todo[];
+  todosFromFirebase: Todo[];
+  isActiveCategory: string;
+  todosCompleted: string[];
+  updateTaskCompletedHandler: (id: string, completed: boolean) => void;
+  deleteTaskHandler: (id: string) => void;
 }
 
 const TodosAfterFilterNotForAll = ({
@@ -22,18 +21,26 @@ const TodosAfterFilterNotForAll = ({
   todosCompleted,
   updateTaskCompletedHandler,
   deleteTaskHandler,
-}:ITodosAfterFilterNotForAllProps) => {
+}: ITodosAfterFilterNotForAllProps) => {
   return (
     <>
       {todosAfterFilterNotForAll.length !== 0 ? (
         todosFromFirebase
           .filter((todo) => isActiveCategory === todo.category)
           .map((todo) => (
-            <TodoItem todo={todo} todosCompleted={todosCompleted} updateTaskCompletedHandler={updateTaskCompletedHandler} deleteTaskHandler={deleteTaskHandler} />
+            <TodoItem
+              todo={todo}
+              todosCompleted={todosCompleted}
+              updateTaskCompletedHandler={updateTaskCompletedHandler}
+              deleteTaskHandler={deleteTaskHandler}
+            />
           ))
       ) : (
         <NotTodos />
       )}
+      <div>
+        Total: {todosAfterFilterNotForAll.length}
+      </div>
     </>
   );
 };
