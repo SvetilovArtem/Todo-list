@@ -1,5 +1,5 @@
 import { Todo } from "@/types/TodoType";
-import React from "react";
+import React, { useState } from "react";
 import NotTodos from "./NotTodos";
 import TodoItem from "./TodoItem";
 
@@ -22,6 +22,7 @@ const TodosAfterFilterNotForAll = ({
   updateTaskCompletedHandler,
   deleteTaskHandler,
 }: ITodosAfterFilterNotForAllProps) => {
+  const [selectTodo, setSelectTodo] = useState('')
   return (
     <>
       {todosAfterFilterNotForAll.length !== 0 ? (
@@ -30,6 +31,8 @@ const TodosAfterFilterNotForAll = ({
           .map((todo) => (
             <TodoItem
               todo={todo}
+              setSelectTodo={setSelectTodo}
+              selectTodo={selectTodo}
               todosCompleted={todosCompleted}
               updateTaskCompletedHandler={updateTaskCompletedHandler}
               deleteTaskHandler={deleteTaskHandler}

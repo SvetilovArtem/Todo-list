@@ -20,7 +20,6 @@ const SignIn = () => {
       dispatch(setAuthUser(resp.user))
 
       router.push("/");
-      console.log(resp.user)
     }).then(() => localStorage.setItem('authUser', JSON.stringify(authUser)))
     
   };

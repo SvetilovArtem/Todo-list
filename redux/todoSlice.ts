@@ -14,6 +14,7 @@ export interface TodoState {
   isActiveCategory: string;
   todosFromFirebase: Todo[];
   todosCompleted: string[];
+  isOpenModalTaskDelete: boolean
 }
 
 const initialState: TodoState = {
@@ -29,6 +30,7 @@ const initialState: TodoState = {
   isActiveCategory: "all",
   todosFromFirebase: [],
   todosCompleted: [],
+  isOpenModalTaskDelete: false
 };
 
 export const todoSlice = createSlice({
@@ -63,8 +65,12 @@ export const todoSlice = createSlice({
     },
     deleteTodosCompleted: (state, action) => {
       state.todosCompleted = state.todosCompleted.filter(todo => todo !== action.payload)
+    },
+    setIsOpenModalTaslDelete: (state, action) => {
+      state.isOpenModalTaskDelete = action.payload
     }
   },
+
 });
 
 export const {
@@ -75,7 +81,8 @@ export const {
   setIsActiveCategory,
   setTodosFromFirebase,
   setTodosCompleted,
-  deleteTodosCompleted
+  deleteTodosCompleted,
+  setIsOpenModalTaslDelete
 } = todoSlice.actions;
 
 export default todoSlice.reducer;

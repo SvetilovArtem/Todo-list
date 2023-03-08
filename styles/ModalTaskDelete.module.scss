@@ -1,0 +1,18 @@
+.modal {
+    @apply absolute text-white left-[50%] bg-gray-800 rounded-[9px] px-[20px] py-[40px] max-w-[200px];
+    .title {
+        @apply mb-[12px];
+    }
+    .closeButton {
+        @apply absolute top-[10px] right-[10px] cursor-pointer;
+        &:hover {
+            @apply rotate-[360deg] transition-all duration-500;
+        }
+    }
+    .okButton {
+        @apply cursor-pointer bg-green-500 text-white px-[15px] py-[4px] rounded-[6px] transition-all duration-200;
+        &:hover {
+            @apply outline outline-4 outline-green-500/50;
+        }
+    }
+}

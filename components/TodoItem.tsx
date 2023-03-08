@@ -1,17 +1,26 @@
+import { AppDispatch, RootState } from "@/redux/store";
+import { setIsOpenModalTaslDelete } from "@/redux/todoSlice";
 import { Todo } from "@/types/TodoType";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import styles from '../styles/Todo.module.scss'
+import ModalTaskDelete from "./ModalTaskDelete";
 
 interface ITodoItemProps {
   todo: Todo,
   todosCompleted: string[],
   updateTaskCompletedHandler: (id:string, completed:boolean) => void,
   deleteTaskHandler: (id: string) => void,
+  selectTodo: string,
+  setSelectTodo: (id:string) => void
 }
 
-const TodoItem = ({ todo, todosCompleted, updateTaskCompletedHandler, deleteTaskHandler }:ITodoItemProps) => {
+const TodoItem = ({ todo, todosCompleted, updateTaskCompletedHandler, deleteTaskHandler, selectTodo, setSelectTodo }:ITodoItemProps) => {
+  const dispatch:AppDispatch = useDispatch()
+  const isOpenModal = useSelector((state:RootState) => state.todoReducer.isOpenModalTaskDelete)
+
   return (
     <div
       className={
@@ -37,11 +46,16 @@ const TodoItem = ({ todo, todosCompleted, updateTaskCompletedHandler, deleteTask
         <button
           type="button"
           className={styles.deleteBtn}
-          onClick={() => deleteTaskHandler(todo.id)}
+          onClick={() => {
+            setSelectTodo(todo.id)
+            dispatch(setIsOpenModalTaslDelete(true))
+            // deleteTaskHandler(todo.id)
+          }}
         >
           delete
         </button>
       </div>
+      {(isOpenModal && todo.id === selectTodo) && <ModalTaskDelete todo={todo} selectTodo={selectTodo} setSelectTodo={setSelectTodo} />}
     </div>
   );
 };

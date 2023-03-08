@@ -1,5 +1,5 @@
 import { Todo } from "@/types/TodoType";
-import React from "react";
+import React, { useState } from "react";
 import NotTodos from "./NotTodos";
 import TodoItem from "./TodoItem";
 
@@ -18,12 +18,15 @@ const TodosAfterFilterForAll = ({
   updateTaskCompletedHandler,
   deleteTaskHandler,
 }: ITodosAfterFilterNotForAllProps) => {
+  const [selectTodo, setSelectTodo] = useState('')
   return (
     <>
       {todosFromFirebase.length !== 0 ? (
         todosFromFirebase.map((todo) => (
           <TodoItem
             todo={todo}
+            selectTodo={selectTodo}
+            setSelectTodo={setSelectTodo}
             todosCompleted={todosCompleted}
             updateTaskCompletedHandler={updateTaskCompletedHandler}
             deleteTaskHandler={deleteTaskHandler}
@@ -32,7 +35,8 @@ const TodosAfterFilterForAll = ({
       ) : (
         <NotTodos />
       )}
-      <div>Total: {todosFromFirebase.length} / Compteted: {Math.round((todosCompleted.length / todosFromFirebase.length) * 100)}%</div>
+      <div>Total: {todosFromFirebase.length} / Completed: {Math.round((todosCompleted.length / todosFromFirebase.length) * 100)}%</div>
+
     </>
   );
 };
