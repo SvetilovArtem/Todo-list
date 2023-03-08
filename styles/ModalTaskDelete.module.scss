@@ -1,5 +1,5 @@
 .modal {
-    @apply absolute text-white left-[50%] bg-gray-800 rounded-[9px] px-[20px] py-[40px] max-w-[200px];
+    @apply absolute text-white text-[10px] left-[calc(50%-100px)] bg-gray-800 rounded-[9px] px-[20px] py-[40px] max-w-[200px];
     .title {
         @apply mb-[12px];
     }
