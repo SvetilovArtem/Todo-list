@@ -1,5 +1,8 @@
 .todo {
-    @apply flex items-center gap-[50px] relative;
+    @apply flex items-center gap-[50px] relative max-w-[620px];
+}
+.buttonGroup {
+    @apply flex;
 }
 .doneBtn {
     @apply border-solid rounded-tl-[3px] rounded-bl-[3px] px-[7px] py-[4px] bg-green-400 text-white transition-all duration-200;

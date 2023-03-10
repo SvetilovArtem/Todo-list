@@ -35,3 +35,15 @@
         }
     }
 }
+
+@media (max-width: 768px) {
+    .header {
+        @apply px-[15px] py-[45px];
+        .logo {
+            @apply text-[27px];
+        }
+        .nav {
+            @apply text-[18px] gap-[20px];
+        }
+    }
+}

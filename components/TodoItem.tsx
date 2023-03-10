@@ -41,7 +41,7 @@ const TodoItem = ({ todo, todosCompleted, updateTaskCompletedHandler, selectTodo
           : styles.todo
       }
     >
-      <div key={todo.id} onMouseMove={onMouseEnterHandler} onMouseLeave={onMouseLeaveHandler}>
+      <div className="cursor-default" key={todo.id} onMouseMove={onMouseEnterHandler} onMouseLeave={onMouseLeaveHandler}>
         {todo.title}
         <span className="text-red-600 text-[8px]">
           (deadline: {todo.deadline})
