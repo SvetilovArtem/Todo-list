@@ -4,22 +4,34 @@ import { Todo } from "@/types/TodoType";
 import Link from "next/link";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import ModalTaskDelete from "./ModalTaskDelete";
+import TodoDescTooltip from "./TodoDescTooltip";
 
 import styles from '../styles/Todo.module.scss'
-import ModalTaskDelete from "./ModalTaskDelete";
 
 interface ITodoItemProps {
   todo: Todo,
   todosCompleted: string[],
   updateTaskCompletedHandler: (id:string, completed:boolean) => void,
-  deleteTaskHandler: (id: string) => void,
   selectTodo: string,
-  setSelectTodo: (id:string) => void
+  setSelectTodo: (id:string) => void,
+  desc: string,
+  setDesc: (desc:string) => void
 }
 
-const TodoItem = ({ todo, todosCompleted, updateTaskCompletedHandler, deleteTaskHandler, selectTodo, setSelectTodo }:ITodoItemProps) => {
+const TodoItem = ({ todo, todosCompleted, updateTaskCompletedHandler, selectTodo, setSelectTodo, desc, setDesc }:ITodoItemProps) => {
   const dispatch:AppDispatch = useDispatch()
   const isOpenModal = useSelector((state:RootState) => state.todoReducer.isOpenModalTaskDelete)
+  const [isShowTodoDesc, setIsShowTodoDesc] = useState(false)
+
+  const onMouseEnterHandler = () => {
+    setDesc(todo.desc)
+    setIsShowTodoDesc(true)
+  }
+  const onMouseLeaveHandler = () => {
+    setDesc('')
+    setIsShowTodoDesc(false)
+  }
 
   return (
     <div
@@ -29,12 +41,12 @@ const TodoItem = ({ todo, todosCompleted, updateTaskCompletedHandler, deleteTask
           : styles.todo
       }
     >
-      <Link href={`/todos/${todo.id}`} key={todo.id}>
+      <div key={todo.id} onMouseMove={onMouseEnterHandler} onMouseLeave={onMouseLeaveHandler}>
         {todo.title}
         <span className="text-red-600 text-[8px]">
           (deadline: {todo.deadline})
         </span>
-      </Link>
+      </div>
       <div className={styles.buttonGroup}>
         <button
           type="button"
@@ -49,13 +61,13 @@ const TodoItem = ({ todo, todosCompleted, updateTaskCompletedHandler, deleteTask
           onClick={() => {
             setSelectTodo(todo.id)
             dispatch(setIsOpenModalTaslDelete(true))
-            // deleteTaskHandler(todo.id)
           }}
         >
           delete
         </button>
       </div>
       {(isOpenModal && todo.id === selectTodo) && <ModalTaskDelete todo={todo} selectTodo={selectTodo} setSelectTodo={setSelectTodo} />}
+      {(isShowTodoDesc && todo.desc === desc) && <TodoDescTooltip description={todo.desc} />}
     </div>
   );
 };

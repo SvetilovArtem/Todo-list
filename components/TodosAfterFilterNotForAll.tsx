@@ -23,6 +23,7 @@ const TodosAfterFilterNotForAll = ({
   deleteTaskHandler,
 }: ITodosAfterFilterNotForAllProps) => {
   const [selectTodo, setSelectTodo] = useState('')
+  const [todoTooltipDesc, setTodoTooltipDesc] = useState('')
   return (
     <>
       {todosAfterFilterNotForAll.length !== 0 ? (
@@ -35,7 +36,8 @@ const TodosAfterFilterNotForAll = ({
               selectTodo={selectTodo}
               todosCompleted={todosCompleted}
               updateTaskCompletedHandler={updateTaskCompletedHandler}
-              deleteTaskHandler={deleteTaskHandler}
+              desc={todoTooltipDesc}
+              setDesc={setTodoTooltipDesc}
             />
           ))
       ) : (

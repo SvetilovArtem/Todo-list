@@ -19,6 +19,7 @@ const TodosAfterFilterForAll = ({
   deleteTaskHandler,
 }: ITodosAfterFilterNotForAllProps) => {
   const [selectTodo, setSelectTodo] = useState('')
+  const [todoTooltipDesc, setTodoTooltipDesc] = useState('')
   return (
     <>
       {todosFromFirebase.length !== 0 ? (
@@ -29,7 +30,8 @@ const TodosAfterFilterForAll = ({
             setSelectTodo={setSelectTodo}
             todosCompleted={todosCompleted}
             updateTaskCompletedHandler={updateTaskCompletedHandler}
-            deleteTaskHandler={deleteTaskHandler}
+            desc={todoTooltipDesc}
+            setDesc={setTodoTooltipDesc}
           />
         ))
       ) : (
